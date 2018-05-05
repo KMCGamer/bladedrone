@@ -1,0 +1,12 @@
+<div>
+  <div *ngFor="let gun of GUNS" class="card" style="width: 16rem; display:inline-block; margin-right: 20px;">
+      <div class="card-body">
+        <h4 class="card-title">{{gun.name}}</h4>
+        <!-- <h6 class="card-subtitle mb-2 text-muted">Its a decent gun</h6> -->
+        <p class="card-text">Damage: {{gun.damage}}</p>
+        <p class="card-text">Accuracy: {{gun.accuracy}}</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    </div>
+</div>
