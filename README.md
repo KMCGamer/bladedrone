@@ -1,5 +1,12 @@
 # Bladedrone
 
+Companion site for the free to play first-person shooter, [Ironsight](https://ironsight.aeriagames.com/). This application aims to allows its users to:
+
+1. Look up weapons, killstreaks, emblems, and other assets
+2. Compare stats
+3. View skins
+4. Create builds and save builds
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
 ## Development server
