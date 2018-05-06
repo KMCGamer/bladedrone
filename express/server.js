@@ -20,9 +20,21 @@ MongoClient.connect('mongodb://localhost:27017', (err, client) => {
     })
     
     app.get('/api/weapons', (req, res) => {
-        db.collection('weapons').find().toArray((err, results) => {
-            res.json(results);
-        });
+        console.log(req.query);
+        switch (req.query.filter) {
+            case "Secondary":
+                db.collection('weapons').find({"category":"Secondary"}).toArray((err, results) => {
+                    res.json(results);
+                });
+                break;
+        
+            default:
+                db.collection('weapons').find().toArray((err, results) => {
+                    res.json(results);
+                });
+                break;
+        }
+        
     });
     
     app.get('/api/weapons/:name', (req, res) => {
@@ -30,6 +42,8 @@ MongoClient.connect('mongodb://localhost:27017', (err, client) => {
             res.send(result);
         });
     });
+
+    app.get('/api/weapons/?name')
     
 })
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Gun } from '../../Gun';
 import { Observable } from 'rxjs';
 import { GunService } from '../../services/gun.service';
+import { ActivatedRoute } from '@angular/router';
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-guns',
@@ -9,17 +11,51 @@ import { GunService } from '../../services/gun.service';
   styleUrls: ['./guns.component.scss']
 })
 export class GunsComponent implements OnInit {
-
   guns: Gun[]
 
-  constructor(private gunService: GunService) { }
+  constructor(
+    private gunService: GunService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getGuns();
+    this.route.queryParams.subscribe(params => {
+      if (params.filter) {
+        this.getSidearms();
+      } else {
+        this.getAllWeapons();
+      }
+    });
   }
 
-  getGuns(): void {
-    this.gunService.getAllWeapons().subscribe(guns => this.guns = guns);
+  getAllWeapons(): void {
+    this.gunService.getAllWeapons().subscribe(guns => {
+      this.guns = guns
+    });
   }
 
+  getSidearms(): void {
+    this.gunService.getSidearms().subscribe(guns => {
+      this.guns = guns
+    });
+  }
+
+  sort(method: string): void {
+    switch (method) {
+      case "alpha":
+        this.guns = this.guns.sort((a, b) => {
+          if(a.name < b.name) return -1;
+          if(a.name > b.name) return 1;
+          return 0;
+        });
+        break;
+      case "damage":
+        this.guns = this.guns.sort((a, b) => {
+          return b.damage - a.damage; 
+        });
+        break;
+      default:
+        break;
+    }
+    
+  }
 }

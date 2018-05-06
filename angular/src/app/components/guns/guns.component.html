@@ -1,11 +1,25 @@
-<div style="margin-top: 20px;" class="row">
-  <div *ngFor="let gun of guns" class="card" style="width: 240px; height: 200px; display: inline-block; margin: 10px">
-    <div class="card-body">
-      <h5 class="card-title">{{gun.name}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{gun.type}}</h6>
-      <p class="card-text">{{gun.description | ellipsis:100}}</p>
-      <a href="#" class="card-link">Info</a>
-      <a href="#" class="card-link">Compare</a>
+<div style="margin-top: 20px;">
+  <div class="row">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort By
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" (click)="sort('alpha')">Alphabetical</a>
+        <a class="dropdown-item" (click)="sort('damage')">Damage</a>
+      </div>
+    </div>
+  </div>
+      
+  <div class="row" style="margin-top: 10px; text-align: center;">
+    <div *ngFor="let gun of guns" class="card" style="max-width: 250px; display: inline-block; margin: 0 15px 15px 0;">
+      <div class="card-body">
+        <h5 class="card-title">{{gun.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{gun.type}}</h6>
+        <!-- <p class="card-text">{{gun.description | ellipsis:100}}</p> -->
+        <img class="weapon" src="../../../assets/img/item_00_200{{gun.skinId}}.png" alt="Its a gun">
+        <!-- <p>{{gun}}</p> -->
+      </div>
     </div>
   </div>
 </div>

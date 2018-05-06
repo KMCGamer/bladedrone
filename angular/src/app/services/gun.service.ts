@@ -13,8 +13,13 @@ export class GunService {
   constructor(private http: HttpClient) { }
 
   public getAllWeapons(): Observable<Gun[]> {
-    console.log("here");
     return this.http.get<Gun[]>('http://localhost:3000/api/weapons').pipe(
+      catchError(this.handleError('blah', [])),
+    );
+  }
+
+  public getSidearms(): Observable<Gun[]> {
+    return this.http.get<Gun[]>('http://localhost:3000/api/weapons?filter=Secondary').pipe(
       catchError(this.handleError('blah', [])),
     );
   }

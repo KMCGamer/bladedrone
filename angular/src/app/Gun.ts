@@ -12,4 +12,6 @@ export class Gun {
     type: number;
     ammo: number;
     name: string;
+    skinId: string;
+    skins: string[];
 }
