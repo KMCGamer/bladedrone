@@ -5,30 +5,23 @@ Companion site for the free to play first-person shooter, [Ironsight](https://ir
 1. Look up weapons, killstreaks, emblems, and other assets
 2. Compare stats
 3. View skins
-4. Create builds and save builds
+4. Create and share custom classes by a single link
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
+## Stack
 
-## Development server
+This application makes use of the [MEAN](http://mean.io/) stack (MongoDB, Express.js, Angular 6, Node.js).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Structure
 
-## Code scaffolding
+`./angular` - contains all of the frontend code (what the user interracts with).
+`./express` - contains all backend code (api calls to get data from MongoDB).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project is built with the SCSS style option turned on.
 
-## Build
+## Run Instructions
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1. First, make sure MongoDB is running.
+2. `cd bladedrone/express/ && npm start` (to auto refresh the server, use [nodemon](https://github.com/remy/nodemon) instead)
+3. Open another terminal.
+4. `cd bladedrone/angular/ && ng serve --open`
+5. Navigate to `localhost:4200`
