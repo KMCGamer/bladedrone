@@ -1,11 +1,11 @@
-<div>
-  <div *ngFor="let gun of guns" class="card" style="max-width: 10rem; display:inline-block; margin-right: 10px;">
-      <div class="card-body">
-        <h4 class="card-title" style="text-align: center">{{gun.name}}</h4>
-        <img src="" alt="">
-        <!-- <h6 class="card-subtitle mb-2 text-muted">Its a decent gun</h6> -->
-        <!-- <p class="card-text">Damage: {{gun.damage}}</p>
-        <p class="card-text">Accuracy: {{gun.accuracy}}</p> -->
-      </div>
+<div style="margin-top: 20px;" class="row">
+  <div *ngFor="let gun of guns" class="card" style="width: 240px; height: 200px; display: inline-block; margin: 10px">
+    <div class="card-body">
+      <h5 class="card-title">{{gun.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{gun.type}}</h6>
+      <p class="card-text">{{gun.description | ellipsis:100}}</p>
+      <a href="#" class="card-link">Info</a>
+      <a href="#" class="card-link">Compare</a>
     </div>
+  </div>
 </div>
