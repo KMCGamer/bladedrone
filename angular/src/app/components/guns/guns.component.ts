@@ -19,8 +19,13 @@ export class GunsComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
+      console.log(params);
       if (params.filter) {
-        this.getSidearms();
+        if (params.filter == "Assault+Rifles") {
+          this.getAssaultRifles();
+        } else {
+          this.getSidearms();
+        }
       } else {
         this.getAllWeapons();
       }
@@ -35,6 +40,12 @@ export class GunsComponent implements OnInit {
 
   getSidearms(): void {
     this.gunService.getSidearms().subscribe(guns => {
+      this.guns = guns
+    });
+  }
+
+  getAssaultRifles(): void {
+    this.gunService.getAssaultRifles().subscribe(guns => {
       this.guns = guns
     });
   }

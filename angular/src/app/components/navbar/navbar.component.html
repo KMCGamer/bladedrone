@@ -13,7 +13,7 @@
           Weapons
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="weapons" >Assault Rifles</a>
+          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Assault+Rifles'}" >Assault Rifles</a>
           <a class="dropdown-item" >Submachine Guns</a>
           <a class="dropdown-item" >Light Machine Guns</a>
           <a class="dropdown-item" >Sniper Rifles</a>

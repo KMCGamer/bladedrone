@@ -24,6 +24,12 @@ export class GunService {
     );
   }
 
+  public getAssaultRifles(): Observable<Gun[]> {
+    return this.http.get<Gun[]>('http://localhost:3000/api/weapons?filter=Assault+Rifles').pipe(
+      catchError(this.handleError('blah', [])),
+    );
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
    

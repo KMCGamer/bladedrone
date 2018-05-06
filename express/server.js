@@ -27,6 +27,11 @@ MongoClient.connect('mongodb://localhost:27017', (err, client) => {
                     res.json(results);
                 });
                 break;
+            case "Assault Rifles":
+                db.collection('weapons').find({"type":"Assault Rifle"}).toArray((err, results) => {
+                    res.json(results);
+                });
+                break;
         
             default:
                 db.collection('weapons').find().toArray((err, results) => {
