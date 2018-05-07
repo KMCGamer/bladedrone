@@ -3,3 +3,10 @@
     display: block; 
     text-align: center;
 }
+
+.gun-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 155px);
+    grid-gap: 15px;
+    justify-content: space-between;
+}

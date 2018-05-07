@@ -1,18 +1,23 @@
-<div style="margin-top: 20px;">
-  <div class="row">
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Sort By
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" (click)="sort('alpha')">Alphabetical</a>
-        <a class="dropdown-item" (click)="sort('damage')">Damage</a>
+<div class="container" style="margin-top: 20px;">
+  <div class="row justify-content-end">
+    <div class="col col-sm-6">
+        <input class="form-control" type="text" placeholder="Default input">
+    </div>
+    <div class="col col-sm-2">
+      <div class="dropdown" style="margin-bottom: 20px;">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sort Weapons
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" (click)="sort('alpha')">Alphabetical</a>
+          <a class="dropdown-item" (click)="sort('damage')">Damage</a>
+        </div>
       </div>
     </div>
   </div>
       
-  <div class="row" style="margin-top: 10px; text-align: center;">
-    <div *ngFor="let gun of guns" class="card" style="max-width: 250px; display: inline-block; margin: 0 15px 15px 0;">
+  <div class="row gun-container" style="padding: 0 15px 0 15px;">
+    <div *ngFor="let gun of guns" class="card">
       <div class="card-body">
         <h5 class="card-title">{{gun.name}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{gun.type}}</h6>
