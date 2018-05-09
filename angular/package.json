@@ -1,5 +1,7 @@
 {
   "name": "bladedrone",
+  "author": "Kyle Matthew Carhart",
+  "license": "MIT",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
