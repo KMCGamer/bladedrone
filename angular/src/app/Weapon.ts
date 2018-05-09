@@ -1,4 +1,4 @@
-export class Gun {
+export class Weapon {
     _id: string;
     category: string;
     description: string;
@@ -12,6 +12,6 @@ export class Gun {
     type: number;
     ammo: number;
     name: string;
-    skinId: string;
+    weaponId: string;
     skins: string[];
 }

@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Gun } from '../../Gun';
+import { Weapon } from '../../Weapon';
 import { Observable } from 'rxjs';
-import { GunService } from '../../services/gun.service';
+import { WeaponsService } from '../../services/weapons.service';
 import { ActivatedRoute } from '@angular/router';
 import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-guns',
-  templateUrl: './guns.component.html',
-  styleUrls: ['./guns.component.scss']
+  templateUrl: './weapons.component.html',
+  styleUrls: ['./weapons.component.scss']
 })
-export class GunsComponent implements OnInit {
-  guns: Gun[]
+export class WeaponsComponent implements OnInit {
+  weapons: Weapon[];
+  fileName: string;
 
   constructor(
-    private gunService: GunService,
+    private weaponsService: WeaponsService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -33,40 +34,41 @@ export class GunsComponent implements OnInit {
   }
 
   getAllWeapons(): void {
-    this.gunService.getAllWeapons().subscribe(guns => {
-      this.guns = guns
+    this.weaponsService.getAllWeapons().subscribe(weapons => {
+      this.weapons = weapons;
     });
   }
 
   getSidearms(): void {
-    this.gunService.getSidearms().subscribe(guns => {
-      this.guns = guns
+    this.weaponsService.getSidearms().subscribe(weapons => {
+      this.weapons = weapons;
     });
   }
 
   getAssaultRifles(): void {
-    this.gunService.getAssaultRifles().subscribe(guns => {
-      this.guns = guns
+    this.weaponsService.getAssaultRifles().subscribe(weapons => {
+      this.weapons = weapons;
     });
   }
 
   sort(method: string): void {
     switch (method) {
       case "alpha":
-        this.guns = this.guns.sort((a, b) => {
+        this.weapons = this.weapons.sort((a, b) => {
           if(a.name < b.name) return -1;
           if(a.name > b.name) return 1;
           return 0;
         });
         break;
       case "damage":
-        this.guns = this.guns.sort((a, b) => {
+        this.weapons = this.weapons.sort((a, b) => {
           return b.damage - a.damage; 
         });
         break;
       default:
         break;
     }
-    
   }
+
+  build
 }

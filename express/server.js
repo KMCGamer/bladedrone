@@ -11,7 +11,7 @@ MongoClient.connect('mongodb://localhost:27017', (err, client) => {
         return console.log(err)
     }
     
-    db = client.db('ironsight')
+    db = client.db('bladedrone')
 
     app.use(cors());
 
@@ -20,7 +20,6 @@ MongoClient.connect('mongodb://localhost:27017', (err, client) => {
     })
     
     app.get('/api/weapons', (req, res) => {
-        console.log(req.query);
         switch (req.query.filter) {
             case "Secondary":
                 db.collection('weapons').find({"category":"Secondary"}).toArray((err, results) => {
