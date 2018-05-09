@@ -17,11 +17,11 @@
   </div>
       
   <div class="row gun-container" style="padding: 0 15px 0 15px;">
-    <div *ngFor="let weapon of weapons" class="card">
+    <div *ngFor="let weapon of weapons" class="card weapon-card">
       <div class="card-body">
         <h5 class="card-title">{{weapon.name}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{weapon.type}}</h6>
-        <img class="weapon" src="../../../assets/img/{{baseSkinFileId(weapon)}}" alt="{{weapon.name}}">
+        <img class="weapon-img" src="../../../assets/img/{{baseSkinFileId(weapon)}}" alt="{{weapon.name}}">
       </div>
     </div>
   </div>
