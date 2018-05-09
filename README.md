@@ -1,4 +1,6 @@
-# Bladedrone
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/6385983/39795143-297f5436-531c-11e8-858f-4c336a5b1cfa.png"/>
+</p>
 
 Companion site for the free to play first-person shooter, [Ironsight](https://ironsight.aeriagames.com/). This application aims to allows its users to:
 
