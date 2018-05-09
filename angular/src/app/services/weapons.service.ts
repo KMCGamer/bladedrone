@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 // import { HttpClientModule } from '@angular/common/http';
-import { Weapon } from '../Weapon';
+import { Weapon } from '../weapon';
 
 @Injectable({
   providedIn: 'root'
