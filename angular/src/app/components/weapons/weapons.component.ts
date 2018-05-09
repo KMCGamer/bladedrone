@@ -19,37 +19,30 @@ export class WeaponsComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      console.log(params);
-      if (params.filter) {
-        if (params.filter == "Assault+Rifles") {
-          this.getAssaultRifles();
-        } else {
-          this.getSidearms();
-        }
-      } else {
-        this.getAllWeapons();
-      }
+      this.weaponsService.queryWeapons(params.filter).subscribe((weapons) => {
+        this.weapons = weapons;
+      });
     });
   }
 
-  getAllWeapons(): void {
-    this.weaponsService.getAllWeapons().subscribe(weapons => {
-      this.weapons = weapons;
-    });
-  }
+  // getAllWeapons(): void {
+  //   this.weaponsService.getAllWeapons().subscribe(weapons => {
+  //     this.weapons = weapons;
+  //   });
+  // }
 
-  getSidearms(): void {
-    this.weaponsService.getSidearms().subscribe(weapons => {
-      this.weapons = weapons;
-    });
-  }
+  // getSidearms(): void {
+  //   this.weaponsService.getSidearms().subscribe(weapons => {
+  //     this.weapons = weapons;
+  //   });
+  // }
 
-  getAssaultRifles(): void {
-    this.weaponsService.getAssaultRifles().subscribe(weapons => {
-      this.weapons = weapons;
-      console.log(weapons[0]);
-    });
-  }
+  // getAssaultRifles(): void {
+  //   this.weaponsService.getAssaultRifles().subscribe(weapons => {
+  //     this.weapons = weapons;
+  //     console.log(weapons[0]);
+  //   });
+  // }
 
   sort(method: string): void {
     switch (method) {

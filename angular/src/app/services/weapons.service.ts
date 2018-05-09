@@ -12,20 +12,56 @@ export class WeaponsService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllWeapons(): Observable<Weapon[]> {
-    return this.http.get<Weapon[]>('http://localhost:3000/api/weapons').pipe(
+  public queryWeapons(query: string): Observable<Weapon[]> {
+    console.log(query);
+    switch (query) {
+      case "Assault+Rifles":
+        return this.getAssaultRifles();
+      case "Secondary":
+        return this.getSidearms();
+      case "Submachine+Guns":
+        return this.getSubmachineGuns();
+      case "Light+Machine+Guns":
+        return this.getLightMachineGuns();
+      case "Sniper+Rifles":
+        return this.getSniperRifles();
+      default:
+        return this.getAllWeapons();
+    }
+  }
+
+  private getAssaultRifles(): Observable<Weapon[]> {
+    return this.http.get<Weapon[]>('http://localhost:3000/api/weapons?filter=Assault+Rifles').pipe(
       catchError(this.handleError('blah', [])),
     );
   }
-
-  public getSidearms(): Observable<Weapon[]> {
+  
+  private getSidearms(): Observable<Weapon[]> {
     return this.http.get<Weapon[]>('http://localhost:3000/api/weapons?filter=Secondary').pipe(
       catchError(this.handleError('blah', [])),
     );
   }
 
-  public getAssaultRifles(): Observable<Weapon[]> {
-    return this.http.get<Weapon[]>('http://localhost:3000/api/weapons?filter=Assault+Rifles').pipe(
+  private getSubmachineGuns(): Observable<Weapon[]> {
+    return this.http.get<Weapon[]>('http://localhost:3000/api/weapons?filter=Submachine+Guns').pipe(
+      catchError(this.handleError('blah', [])),
+    );
+  }
+
+  private getLightMachineGuns(): Observable<Weapon[]> {
+    return this.http.get<Weapon[]>('http://localhost:3000/api/weapons?filter=Light+Machine+Guns').pipe(
+      catchError(this.handleError('blah', [])),
+    );
+  }
+
+  private getSniperRifles(): Observable<Weapon[]> {
+    return this.http.get<Weapon[]>('http://localhost:3000/api/weapons?filter=Sniper+Rifles').pipe(
+      catchError(this.handleError('blah', [])),
+    );
+  }
+
+  private getAllWeapons(): Observable<Weapon[]> {
+    return this.http.get<Weapon[]>('http://localhost:3000/api/weapons').pipe(
       catchError(this.handleError('blah', [])),
     );
   }

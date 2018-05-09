@@ -21,17 +21,31 @@ MongoClient.connect('mongodb://localhost:27017', (err, client) => {
     
     app.get('/api/weapons', (req, res) => {
         switch (req.query.filter) {
-            case "Secondary":
-                db.collection('weapons').find({"category":"Secondary"}).toArray((err, results) => {
-                    res.json(results);
-                });
-                break;
             case "Assault Rifles":
                 db.collection('weapons').find({"type":"Assault Rifle"}).toArray((err, results) => {
                     res.json(results);
                 });
                 break;
-        
+            case "Submachine Guns":
+                db.collection('weapons').find({"type":"Submachine Gun"}).toArray((err, results) => {
+                    res.json(results);
+                });
+                break;
+            case "Light Machine Guns":
+                db.collection('weapons').find({"type":"Light Machine Gun"}).toArray((err, results) => {
+                    res.json(results);
+                });
+                break;
+            case "Sniper Rifles":
+                db.collection('weapons').find({"type":"Sniper Rifle"}).toArray((err, results) => {
+                    res.json(results);
+                });
+                break;
+            case "Secondary":
+                db.collection('weapons').find({"category":"Secondary"}).toArray((err, results) => {
+                    res.json(results);
+                });
+                break;
             default:
                 db.collection('weapons').find().toArray((err, results) => {
                     res.json(results);

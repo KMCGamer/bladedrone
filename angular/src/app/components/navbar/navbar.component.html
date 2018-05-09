@@ -14,9 +14,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Assault+Rifles'}" >Assault Rifles</a>
-          <a class="dropdown-item" >Submachine Guns</a>
-          <a class="dropdown-item" >Light Machine Guns</a>
-          <a class="dropdown-item" >Sniper Rifles</a>
+          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Submachine+Guns'}">Submachine Guns</a>
+          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Light+Machine+Guns'}">Light Machine Guns</a>
+          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Sniper+Rifles'}">Sniper Rifles</a>
           <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Secondary'}">Sidearms</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" routerLink="weapons">All</a>
