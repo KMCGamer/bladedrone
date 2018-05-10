@@ -60,7 +60,7 @@ export class WeaponsService {
     );
   }
 
-  private getAllWeapons(): Observable<Weapon[]> {
+  public getAllWeapons(): Observable<Weapon[]> {
     return this.http.get<Weapon[]>('http://localhost:3000/api/weapons').pipe(
       catchError(this.handleError('blah', [])),
     );

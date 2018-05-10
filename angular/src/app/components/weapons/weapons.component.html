@@ -2,42 +2,31 @@
 
   <h1>Weapons</h1>
 
-  <div class="row">
-    <div class="col">
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col col-lg-2">
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Weapon Type
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Assault+Rifles'}" >Assault Rifles</a>
-          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Submachine+Guns'}">Submachine Guns</a>
-          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Light+Machine+Guns'}">Light Machine Guns</a>
-          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Sniper+Rifles'}">Sniper Rifles</a>
-          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Secondary'}">Sidearms</a>
+          <a class="dropdown-item" (click)="query('Assault+Rifles')">Assault Rifles</a>
+          <!-- <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Light+Machine+Guns'}">Light Machine Guns</a> -->
+          <!-- <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Submachine+Guns'}">Submachine Guns</a> -->
+          <!-- <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Sniper+Rifles'}">Sniper Rifles</a> -->
+          <!-- <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Secondary'}">Sidearms</a> -->
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" routerLink="weapons">All</a>
+          <a class="dropdown-item" (click)="query('Assault+Rifles')">All</a>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="dropdown" style="margin-bottom: 20px;">
-        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Sort Weapons
-        </button>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" (click)="sort('alpha')">Alphabetical</a>
-          <a class="dropdown-item" (click)="sort('damage')">Damage</a>
-        </div>
-      </div>
+    <div class="col col-lg-1">
+      <button class="btn btn-secondary" (click)="toCardView()"><i class="fas fa-th-large fa-lg"></i></button>
     </div>
-    <div class="col">
-      <button class="btn btn-secondary" (click)="toCardView()"><i class="fas fa-th-large"></i> Card View</button>
-    </div>
-    <div class="col">
-      <button class="btn btn-secondary" (click)="toTableView()"><i class="fas fa-list"></i> Table View</button>
+    <div class="col col-lg-1">
+      <button class="btn btn-secondary" (click)="toTableView()"><i class="fas fa-list fa-lg"></i></button>
     </div>
   </div>
-  
+
   <div class="row gun-container" style="padding: 0 15px 0 15px; margin-bottom: 20px;" *ngIf="!tableView">
     <div *ngFor="let weapon of weapons" class="card weapon-card">
       <div class="card-body">
@@ -51,15 +40,15 @@
   <table class="table table-hover" *ngIf="tableView">
     <thead>
       <tr>
-        <th class="weapon-table-header" scope="col" (click)="sort('alpha')">Name <i [class.fa-caret-down]="sortReverse" [class.fa-caret-up]="!sortReverse" class="fas"></i></th>
-        <th class="weapon-table-header" scope="col">Category <i class="fas fa-caret-down"></i></th>
-        <th class="weapon-table-header" scope="col">Type <i class="fas fa-caret-down"></i></th>
-        <th class="weapon-table-header" scope="col">Damage <i class="fas fa-caret-down"></i></th>
-        <th class="weapon-table-header" scope="col">Mobility <i class="fas fa-caret-down"></i></th>
-        <th class="weapon-table-header" scope="col">Range <i class="fas fa-caret-down"></i></th>
-        <th class="weapon-table-header" scope="col">Recoil <i class="fas fa-caret-down"></i></th>
-        <th class="weapon-table-header" scope="col">Fire Rate <i class="fas fa-caret-down"></i></th>
-        <th class="weapon-table-header" scope="col">Accuracy <i class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col" (click)="sort('name')">Name <i [class.fa-caret-up]="sortReverse && sortType == 'name'" class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col" (click)="sort('category')">Category <i [class.fa-caret-up]="sortReverse && sortType == 'category'" class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col" (click)="sort('type')">Type <i [class.fa-caret-up]="sortReverse && sortType == 'type'" class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col" (click)="sort('damage')">Damage <i [class.fa-caret-up]="sortReverse && sortType == 'damage'" class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col" (click)="sort('mobility')">Mobility <i [class.fa-caret-up]="sortReverse && sortType == 'mobility'" class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col" (click)="sort('range')">Range <i [class.fa-caret-up]="sortReverse && sortType == 'range'" class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col" (click)="sort('recoil')">Recoil <i [class.fa-caret-up]="sortReverse && sortType == 'recoil'" class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col" (click)="sort('fireRate')">Fire Rate <i [class.fa-caret-up]="sortReverse && sortType == 'fireRate'" class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col" (click)="sort('accuracy')">Accuracy <i [class.fa-caret-up]="sortReverse && sortType == 'accuracy'" class="fas fa-caret-down"></i></th>
       </tr>
     </thead>
     <tbody>

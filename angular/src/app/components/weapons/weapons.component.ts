@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Weapon } from '../../weapon';
 import { Observable } from 'rxjs';
 import { WeaponsService } from '../../services/weapons.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from "rxjs/operators";
 
 @Component({
@@ -18,17 +18,16 @@ export class WeaponsComponent implements OnInit {
 
   constructor(
     private weaponsService: WeaponsService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
-    this.sortType = 'alpha';
+    this.sortType = 'name';
     this.sortReverse = false;
-
     this.tableView = false;
     this.route.queryParams.subscribe(params => {
-      this.weaponsService.queryWeapons(params.filter).subscribe((weapons) => {
+      this.weaponsService.getAllWeapons().subscribe((weapons) => {
         this.weapons = weapons;
-        this.sort(this.sortType);
       });
     });
   }
@@ -42,29 +41,49 @@ export class WeaponsComponent implements OnInit {
   }
 
   sort(method: string): void {
+    let sorted;
+
     switch (method) {
-      case "alpha":
-        const sorted = this.weapons.sort((a, b) => {
-          if(a.name < b.name) return -1;
-          if(a.name > b.name) return 1;
-          return 0;
+      case "name": 
+      case "category":
+      case "type": {
+        sorted = this.weapons.sort((a, b) => {
+          if(a[method] < b[method]) return -1;
+          else if(a[method] > b[method]) return 1;
+          else return 0;
         });
-        this.weapons = this.sortReverse ? sorted.reverse() : sorted; 
-        this.sortType = method;
-        this.sortReverse = !this.sortReverse;
-        break;  
-      case "damage":
-        this.weapons = this.weapons.sort((a, b) => {
-          return b.damage - a.damage; 
+        break; 
+      }
+      case "damage": case "mobility": case "range":
+      case "recoil": case "fireRate": case "accuracy": {
+        sorted = this.weapons.sort((a, b) => {
+          if (b[method] === a[method]) {
+            if(a.name < b.name) return -1;
+            else if(a.name > b.name) return 1;
+            else return 0;
+          } else {
+            return b[method] - a[method]; 
+          }
         });
         break;
+      }
       default:
         break;
     }
+    this.weapons = this.sortReverse ?  sorted: sorted.reverse(); 
+    this.sortType = method;
+    this.sortReverse = !this.sortReverse;
   }
 
   public baseSkinFileId(weapon : Weapon): string {
     const AB = weapon.category == "Primary" ? "00" : "01";
     return `item_${AB}_000${weapon.weaponId}.png`;
+  }
+
+  public query(query: string) {
+    this.router.navigate([], {queryParams: { filter: query }});
+    this.weaponsService.queryWeapons(query).subscribe((weapons) => {
+      this.weapons = weapons;
+    })
   }
 }

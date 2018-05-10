@@ -20,34 +20,35 @@ MongoClient.connect('mongodb://localhost:27017', (err, client) => {
     })
     
     app.get('/api/weapons', (req, res) => {
+        console.log(req.query);
         switch (req.query.filter) {
             case "Assault Rifles":
-                db.collection('weapons').find({"type":"Assault Rifle"}).toArray((err, results) => {
+                db.collection('weapons').find({"type":"Assault Rifle"}).sort({name: 1}).toArray((err, results) => {
                     res.json(results);
                 });
                 break;
             case "Submachine Guns":
-                db.collection('weapons').find({"type":"Submachine Gun"}).toArray((err, results) => {
+                db.collection('weapons').find({"type":"Submachine Gun"}).sort({name: 1}).toArray((err, results) => {
                     res.json(results);
                 });
                 break;
             case "Light Machine Guns":
-                db.collection('weapons').find({"type":"Light Machine Gun"}).toArray((err, results) => {
+                db.collection('weapons').find({"type":"Light Machine Gun"}).sort({name: 1}).toArray((err, results) => {
                     res.json(results);
                 });
                 break;
             case "Sniper Rifles":
-                db.collection('weapons').find({"type":"Sniper Rifle"}).toArray((err, results) => {
+                db.collection('weapons').find({"type":"Sniper Rifle"}).sort({name: 1}).toArray((err, results) => {
                     res.json(results);
                 });
                 break;
             case "Secondary":
-                db.collection('weapons').find({"category":"Secondary"}).toArray((err, results) => {
+                db.collection('weapons').find({"category":"Secondary"}).sort({name: 1}).toArray((err, results) => {
                     res.json(results);
                 });
                 break;
             default:
-                db.collection('weapons').find().toArray((err, results) => {
+                db.collection('weapons').find().sort({name: 1}).toArray((err, results) => {
                     res.json(results);
                 });
                 break;
