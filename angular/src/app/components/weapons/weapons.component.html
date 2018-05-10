@@ -1,15 +1,25 @@
 <div class="container" style="margin-top: 20px;">
-  <div class="row">
-    <div class="col col-sm-12">
-      <h1>Weapons</h1>
-    </div>
-  </div>
 
-  <div class="row justify-content-end">
-    <!-- <div class="col col-sm-6">
-        <input class="form-control" type="text" placeholder="Default input">
-    </div> -->
-    <div class="col col-sm-2">
+  <h1>Weapons</h1>
+
+  <div class="row">
+    <div class="col">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Weapon Type
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Assault+Rifles'}" >Assault Rifles</a>
+          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Submachine+Guns'}">Submachine Guns</a>
+          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Light+Machine+Guns'}">Light Machine Guns</a>
+          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Sniper+Rifles'}">Sniper Rifles</a>
+          <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Secondary'}">Sidearms</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="weapons">All</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
       <div class="dropdown" style="margin-bottom: 20px;">
         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Sort Weapons
@@ -20,9 +30,15 @@
         </div>
       </div>
     </div>
+    <div class="col">
+      <button class="btn btn-secondary" (click)="toCardView()"><i class="fas fa-th-large"></i> Card View</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-secondary" (click)="toTableView()"><i class="fas fa-list"></i> Table View</button>
+    </div>
   </div>
-      
-  <div class="row gun-container" style="padding: 0 15px 0 15px; margin-bottom: 20px;">
+  
+  <div class="row gun-container" style="padding: 0 15px 0 15px; margin-bottom: 20px;" *ngIf="!tableView">
     <div *ngFor="let weapon of weapons" class="card weapon-card">
       <div class="card-body">
         <h5 class="card-title">{{weapon.name}}</h5>
@@ -31,4 +47,25 @@
       </div>
     </div>
   </div>
+
+  <table class="table table-hover" *ngIf="tableView">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Type</th>
+        <th scope="col">Damage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let weapon of weapons">
+          <td>{{weapon.name}}</td>
+          <td>{{weapon.category}}</td>
+          <td>{{weapon.type}}</td>
+          <td>{{weapon.damage}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
 </div>

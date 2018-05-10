@@ -12,12 +12,14 @@ import { map } from "rxjs/operators";
 })
 export class WeaponsComponent implements OnInit {
   weapons: Weapon[];
+  tableView: boolean;
 
   constructor(
     private weaponsService: WeaponsService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.tableView = false;
     this.route.queryParams.subscribe(params => {
       this.weaponsService.queryWeapons(params.filter).subscribe((weapons) => {
         this.weapons = weapons;
@@ -25,24 +27,13 @@ export class WeaponsComponent implements OnInit {
     });
   }
 
-  // getAllWeapons(): void {
-  //   this.weaponsService.getAllWeapons().subscribe(weapons => {
-  //     this.weapons = weapons;
-  //   });
-  // }
+  public toTableView() {
+    this.tableView = true;
+  }
 
-  // getSidearms(): void {
-  //   this.weaponsService.getSidearms().subscribe(weapons => {
-  //     this.weapons = weapons;
-  //   });
-  // }
-
-  // getAssaultRifles(): void {
-  //   this.weaponsService.getAssaultRifles().subscribe(weapons => {
-  //     this.weapons = weapons;
-  //     console.log(weapons[0]);
-  //   });
-  // }
+  public toCardView() {
+    this.tableView = false;
+  }
 
   sort(method: string): void {
     switch (method) {
