@@ -21,3 +21,8 @@
     grid-gap: 15px;
     justify-content: space-between;
 }
+
+.weapon-table-header {
+    cursor: pointer;
+    user-select: none;
+}

@@ -13,16 +13,22 @@ import { map } from "rxjs/operators";
 export class WeaponsComponent implements OnInit {
   weapons: Weapon[];
   tableView: boolean;
+  sortType: string;
+  sortReverse: boolean;
 
   constructor(
     private weaponsService: WeaponsService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.sortType = 'alpha';
+    this.sortReverse = false;
+
     this.tableView = false;
     this.route.queryParams.subscribe(params => {
       this.weaponsService.queryWeapons(params.filter).subscribe((weapons) => {
         this.weapons = weapons;
+        this.sort(this.sortType);
       });
     });
   }
@@ -38,12 +44,15 @@ export class WeaponsComponent implements OnInit {
   sort(method: string): void {
     switch (method) {
       case "alpha":
-        this.weapons = this.weapons.sort((a, b) => {
+        const sorted = this.weapons.sort((a, b) => {
           if(a.name < b.name) return -1;
           if(a.name > b.name) return 1;
           return 0;
         });
-        break;
+        this.weapons = this.sortReverse ? sorted.reverse() : sorted; 
+        this.sortType = method;
+        this.sortReverse = !this.sortReverse;
+        break;  
       case "damage":
         this.weapons = this.weapons.sort((a, b) => {
           return b.damage - a.damage; 

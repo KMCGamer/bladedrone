@@ -51,10 +51,15 @@
   <table class="table table-hover" *ngIf="tableView">
     <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Category</th>
-        <th scope="col">Type</th>
-        <th scope="col">Damage</th>
+        <th class="weapon-table-header" scope="col" (click)="sort('alpha')">Name <i [class.fa-caret-down]="sortReverse" [class.fa-caret-up]="!sortReverse" class="fas"></i></th>
+        <th class="weapon-table-header" scope="col">Category <i class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col">Type <i class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col">Damage <i class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col">Mobility <i class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col">Range <i class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col">Recoil <i class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col">Fire Rate <i class="fas fa-caret-down"></i></th>
+        <th class="weapon-table-header" scope="col">Accuracy <i class="fas fa-caret-down"></i></th>
       </tr>
     </thead>
     <tbody>
@@ -63,9 +68,12 @@
           <td>{{weapon.category}}</td>
           <td>{{weapon.type}}</td>
           <td>{{weapon.damage}}</td>
+          <td>{{weapon.mobility}}</td>
+          <td>{{weapon.range}}</td>
+          <td>{{weapon.recoil}}</td>
+          <td>{{weapon.fireRate}}</td>
+          <td>{{weapon.accuracy}}</td>
       </tr>
     </tbody>
   </table>
-
-
 </div>
