@@ -23,13 +23,14 @@ export class TableComponent implements OnInit {
     this.sortReverse = false;
   }
 
+  /* Determines the correct sorting method and sorts the values */
   public sort(header: string) {
     let sorted;
-    if (this.values.length === 0) {
+    if (this.values.length < 2) {
       return;
     }
 
-    // Determine the type
+    // Determine the type of sorting to do
     if (typeof this.values[0][header] === "number") {
       sorted = this.sortNumerically(header);
     } else if (typeof this.values[0][header] === "string") {
@@ -41,17 +42,48 @@ export class TableComponent implements OnInit {
     this.sortReverse = !this.sortReverse;
   }
 
+  /* 
+  Sorts the values alphabetically. If two values are the same, the values
+  are then sorted by their default value. 
+  */
   private sortAlphabetically(header: string): any[] {
     // Using slice to create a shallow copy
     return this.values.slice(0).sort((a, b) => {
       if (b[header] === a[header]) {
-        return this.compareAlphabetically(a[this.defaultSort], b[this.defaultSort]);
+        return this.compare(a[this.defaultSort], b[this.defaultSort]);
       } else {
         return this.compareAlphabetically(a[header], b[header]);
       } 
     });
   }
+  
+  /* 
+  Sorts the values numerically. If two values are the same, the values
+  are then sorted by their default value. 
+  */
+  private sortNumerically(header: string) {
+    // Using slice to create a shallow copy
+    return this.values.slice(0).sort((a, b) => {
+      if (b[header] === a[header]) {
+        return this.compare(a[this.defaultSort], b[this.defaultSort]);
+      } else {
+        return b[header] - a[header]; 
+      }
+    });
+  }
 
+  /* Compares two values of unknown type. */
+  private compare(a: any, b: any): number {
+    if (typeof a === "string" && typeof b === "string") {
+      return this.compareAlphabetically(a, b);
+    } else if (typeof a === "number" && typeof b === "number") {
+      return this.compareNumerically(a, b);
+    } else {
+      return 0;
+    }
+  }
+
+  /* Compares two values of type: string */
   private compareAlphabetically(a: string, b: string): number {
     if (a < b) {
       return -1;
@@ -62,14 +94,8 @@ export class TableComponent implements OnInit {
     }
   }
 
-  private sortNumerically(header: string) {
-    // Using slice to create a shallow copy
-    return this.values.slice(0).sort((a, b) => {
-      if (b[header] === a[header]) {
-        return this.compareAlphabetically(a[this.defaultSort], b[this.defaultSort]);
-      } else {
-        return b[header] - a[header]; 
-      }
-    });
+  /* Compares two values of type: number */
+  compareNumerically(a: number, b: number): number {
+    return a - b;
   }
 }
