@@ -13,8 +13,6 @@ import { map } from "rxjs/operators";
 export class WeaponsComponent implements OnInit {
   weapons: Weapon[];
   tableView: boolean;
-  sortType: string;
-  sortReverse: boolean;
 
   constructor(
     private weaponsService: WeaponsService,
@@ -22,8 +20,6 @@ export class WeaponsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.sortType = 'name';
-    this.sortReverse = false;
     this.tableView = false;
     this.route.queryParams.subscribe(params => {
       this.weaponsService.getAllWeapons().subscribe((weapons) => {
@@ -38,41 +34,6 @@ export class WeaponsComponent implements OnInit {
 
   public toCardView() {
     this.tableView = false;
-  }
-
-  sort(method: string): void {
-    let sorted;
-
-    switch (method) {
-      case "name": 
-      case "category":
-      case "type": {
-        sorted = this.weapons.sort((a, b) => {
-          if(a[method] < b[method]) return -1;
-          else if(a[method] > b[method]) return 1;
-          else return 0;
-        });
-        break; 
-      }
-      case "damage": case "mobility": case "range":
-      case "recoil": case "fireRate": case "accuracy": {
-        sorted = this.weapons.sort((a, b) => {
-          if (b[method] === a[method]) {
-            if(a.name < b.name) return -1;
-            else if(a.name > b.name) return 1;
-            else return 0;
-          } else {
-            return b[method] - a[method]; 
-          }
-        });
-        break;
-      }
-      default:
-        break;
-    }
-    this.weapons = this.sortReverse ?  sorted: sorted.reverse(); 
-    this.sortType = method;
-    this.sortReverse = !this.sortReverse;
   }
 
   public baseSkinFileId(weapon : Weapon): string {

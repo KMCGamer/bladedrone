@@ -10,6 +10,7 @@ import { WeaponsComponent } from './components/weapons/weapons.component';
 import { HomeComponent } from './components/home/home.component';
 import { WeaponsService } from './services/weapons.service';
 import { EllipsisPipe } from './pipes/ellipsis.pipe';
+import { TableComponent } from './components/table/table.component';
 
 const appRoutes: Routes = [
   { path: 'weapons', component: WeaponsComponent },
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     WeaponsComponent,
     HomeComponent,
-    EllipsisPipe
+    EllipsisPipe,
+    TableComponent
   ],
   imports: [
     BrowserModule,
