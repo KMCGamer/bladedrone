@@ -1,7 +1,7 @@
 .weapon {
     &-card {
         position: relative;
-        margin-bottom: 15px;
+        margin: 10px 0 10px 0;
         top: 0;
         transition: top .25s ease;
         &:hover {

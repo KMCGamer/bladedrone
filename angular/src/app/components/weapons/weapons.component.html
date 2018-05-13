@@ -2,28 +2,31 @@
 
   <h1>Weapons</h1>
 
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col col-lg-2">
-      <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Weapon Type
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" (click)="query('Assault+Rifles')">Assault Rifles</a>
-          <!-- <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Light+Machine+Guns'}">Light Machine Guns</a> -->
-          <!-- <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Submachine+Guns'}">Submachine Guns</a> -->
-          <!-- <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Sniper+Rifles'}">Sniper Rifles</a> -->
-          <!-- <a class="dropdown-item" [routerLink]="['/weapons']" [queryParams]="{ filter: 'Secondary'}">Sidearms</a> -->
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="query('Assault+Rifles')">All</a>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active">All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="query('Assault+Rifles')">AR</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">SMG</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">LMG</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">SR</a>
+        </li>
+      </ul>
     </div>
-    <div class="col col-lg-1">
-      <button class="btn btn-secondary" (click)="toCardView()"><i class="fas fa-th-large fa-lg"></i></button>
+    <div class="col-1">
+      <button class="" (click)="toCardView()"><i class="fas fa-th"></i></button>
     </div>
-    <div class="col col-lg-1">
-      <button class="btn btn-secondary" (click)="toTableView()"><i class="fas fa-list fa-lg"></i></button>
+    <div class="col-1">
+      <button class="" (click)="toTableView()"><i class="fas fa-list"></i></button>
     </div>
   </div>
 
@@ -38,6 +41,5 @@
       </div>
     </div>
   </div>
-
   <app-table *ngIf="tableView" [values]="weapons" [headers]="['name', 'category', 'type', 'damage']" [defaultSort]="'name'"></app-table>
 </div>
