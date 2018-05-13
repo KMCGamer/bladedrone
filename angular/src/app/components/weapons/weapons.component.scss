@@ -1,6 +1,7 @@
 .weapon {
     &-card {
         position: relative;
+        margin-bottom: 15px;
         top: 0;
         transition: top .25s ease;
         &:hover {
@@ -13,13 +14,6 @@
         display: block; 
         text-align: center;
     }
-}
-
-.gun-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 155px);
-    grid-gap: 15px;
-    justify-content: space-between;
 }
 
 a {

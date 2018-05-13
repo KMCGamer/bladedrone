@@ -27,12 +27,14 @@
     </div>
   </div>
 
-  <div class="row gun-container" style="padding: 0 15px 0 15px; margin-bottom: 20px;" *ngIf="!tableView">
-    <div *ngFor="let weapon of weapons" class="card weapon-card">
-      <div class="card-body">
-        <h5 class="card-title">{{weapon.name}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{weapon.type}}</h6>
-        <img class="weapon-img" src="../../../assets/img/{{baseSkinFileId(weapon)}}" alt="{{weapon.name}}">
+  <div class="row" *ngIf="!tableView">
+    <div class="col-xs-10 col-sm-4 col-md-3 col-xl-2" *ngFor="let weapon of weapons" >
+      <div class="card weapon-card">
+        <div class="card-body">
+          <h5 class="card-title">{{weapon.name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{weapon.type}}</h6>
+          <img class="weapon-img" src="../../../assets/img/{{baseSkinFileId(weapon)}}" alt="{{weapon.name}}">
+        </div>
       </div>
     </div>
   </div>
