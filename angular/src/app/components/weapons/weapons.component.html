@@ -9,19 +9,19 @@
           <a class="nav-link" [class.active]="isCurrentTab('all')" routerLink="/weapons">All</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [class.active]="isCurrentTab('AR')" routerLink="/weapons" [queryParams]="{'type' : 'AR'}">AR</a>
+          <a class="nav-link" [class.active]="isCurrentTab('AR')" routerLink="/weapons" [queryParams]="{'type' : 'Assault Rifle'}">AR</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [class.active]="isCurrentTab('SMG')" routerLink="/weapons" [queryParams]="{'type' : 'SMG'}">SMG</a>
+          <a class="nav-link" [class.active]="isCurrentTab('SMG')" routerLink="/weapons" [queryParams]="{'type' : 'Submachine Gun'}">SMG</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [class.active]="isCurrentTab('LMG')" routerLink="/weapons" [queryParams]="{'type' : 'LMG'}">LMG</a>
+          <a class="nav-link" [class.active]="isCurrentTab('LMG')" routerLink="/weapons" [queryParams]="{'type' : 'Light Machine Gun'}">LMG</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [class.active]="isCurrentTab('SR')" routerLink="/weapons" [queryParams]="{'type' : 'SR'}">SR</a>
+          <a class="nav-link" [class.active]="isCurrentTab('SR')" routerLink="/weapons" [queryParams]="{'type' : 'Sniper Rifle'}">SR</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" [class.active]="isCurrentTab('Sidearm')" routerLink="/weapons" [queryParams]="{'type' : 'Sidearm'}">Sidearms</a>
+            <a class="nav-link" [class.active]="isCurrentTab('Sidearm')" routerLink="/weapons" [queryParams]="{'category' : 'Secondary'}">Secondaries</a>
           </li>
       </ul>
     </div>

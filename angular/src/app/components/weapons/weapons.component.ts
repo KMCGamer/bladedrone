@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Weapon } from '../../weapon';
 import { Observable } from 'rxjs';
 import { WeaponsService } from '../../services/weapons.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { map } from "rxjs/operators";
 
 @Component({
@@ -17,23 +17,23 @@ export class WeaponsComponent implements OnInit {
 
   constructor(
     private weaponsService: WeaponsService,
-    private route: ActivatedRoute,
-    private router: Router) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.currentTab = 'all';
     this.tableView = false;
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParamMap.subscribe(paramMap => {
       // TODO: Fix this, we shouldnt be subscribing to this every time, 
       // we only need it once per query change.
-      this.weaponsService.queryWeapons(params).subscribe((weapons) => {
-        if (params.type === undefined) {
-          this.currentTab = "all";
-        } else {
-          this.currentTab = params.type;
-        }
-        this.weapons = weapons;
-      });
+      if (paramMap.has("type") || paramMap.has("category")) {
+        this.weaponsService.queryWeapons(paramMap).subscribe(weapons => {
+          this.weapons = weapons;
+        });
+      } else {
+        this.weaponsService.getAllWeapons().subscribe(weapons => {
+          this.weapons = weapons;
+        })
+      }
     });
   }
 
