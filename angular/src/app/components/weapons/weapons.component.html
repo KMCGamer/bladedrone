@@ -6,20 +6,23 @@
     <div class="col">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active">All</a>
+          <a class="nav-link" [class.active]="isCurrentTab('all')" routerLink="/weapons">All</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="query('Assault+Rifles')">AR</a>
+          <a class="nav-link" [class.active]="isCurrentTab('AR')" routerLink="/weapons" [queryParams]="{'type' : 'AR'}">AR</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">SMG</a>
+          <a class="nav-link" [class.active]="isCurrentTab('SMG')" routerLink="/weapons" [queryParams]="{'type' : 'SMG'}">SMG</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">LMG</a>
+          <a class="nav-link" [class.active]="isCurrentTab('LMG')" routerLink="/weapons" [queryParams]="{'type' : 'LMG'}">LMG</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">SR</a>
+          <a class="nav-link" [class.active]="isCurrentTab('SR')" routerLink="/weapons" [queryParams]="{'type' : 'SR'}">SR</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" [class.active]="isCurrentTab('Sidearm')" routerLink="/weapons" [queryParams]="{'type' : 'Sidearm'}">Sidearms</a>
+          </li>
       </ul>
     </div>
     <div class="col-1">
@@ -41,5 +44,10 @@
       </div>
     </div>
   </div>
-  <app-table *ngIf="tableView" [values]="weapons" [headers]="['name', 'category', 'type', 'damage']" [defaultSort]="'name'"></app-table>
+  <div class="row">
+    <div class="col-12">
+      <app-table *ngIf="tableView" [values]="weapons" [headers]="['name', 'category', 'type', 'damage']" [defaultSort]="'name'"></app-table>
+    </div>
+  </div>
+  
 </div>

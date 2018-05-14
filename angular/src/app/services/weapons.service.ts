@@ -12,18 +12,17 @@ export class WeaponsService {
 
   constructor(private http: HttpClient) { }
 
-  public queryWeapons(query: string): Observable<Weapon[]> {
-    console.log(query);
-    switch (query) {
-      case "Assault+Rifles":
+  public queryWeapons(query: object): Observable<Weapon[]> {
+    switch (query["type"]) {
+      case "AR":
         return this.getAssaultRifles();
-      case "Secondary":
+      case "Sidearm":
         return this.getSidearms();
-      case "Submachine+Guns":
+      case "SMG":
         return this.getSubmachineGuns();
-      case "Light+Machine+Guns":
+      case "LMG":
         return this.getLightMachineGuns();
-      case "Sniper+Rifles":
+      case "SR":
         return this.getSniperRifles();
       default:
         return this.getAllWeapons();

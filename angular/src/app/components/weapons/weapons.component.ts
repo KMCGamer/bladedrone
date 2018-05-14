@@ -13,6 +13,7 @@ import { map } from "rxjs/operators";
 export class WeaponsComponent implements OnInit {
   weapons: Weapon[];
   tableView: boolean;
+  currentTab: string;
 
   constructor(
     private weaponsService: WeaponsService,
@@ -20,12 +21,25 @@ export class WeaponsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.currentTab = 'all';
     this.tableView = false;
     this.route.queryParams.subscribe(params => {
-      this.weaponsService.getAllWeapons().subscribe((weapons) => {
+      // TODO: Fix this, we shouldnt be subscribing to this every time, 
+      // we only need it once per query change.
+      this.weaponsService.queryWeapons(params).subscribe((weapons) => {
+        if (params.type === undefined) {
+          this.currentTab = "all";
+        } else {
+          this.currentTab = params.type;
+        }
         this.weapons = weapons;
       });
     });
+  }
+
+  ngAfterContentInit() {
+    //Called after ngOnInit when the component's or directive's content has been initialized.
+    //Add 'implements AfterContentInit' to the class.
   }
 
   public toTableView() {
@@ -41,10 +55,8 @@ export class WeaponsComponent implements OnInit {
     return `item_${AB}_000${weapon.weaponId}.png`;
   }
 
-  public query(query: string) {
-    this.router.navigate([], {queryParams: { filter: query }});
-    this.weaponsService.queryWeapons(query).subscribe((weapons) => {
-      this.weapons = weapons;
-    })
+  public isCurrentTab(tab: string): boolean {
+    return this.currentTab === tab;
   }
+
 }
