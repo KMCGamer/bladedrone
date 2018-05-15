@@ -12,7 +12,7 @@ export class TableComponent implements OnInit {
   @Input() link: string;
 
   sortType: string;
-  sortReverse: boolean;
+  sortAscending: boolean;
 
   constructor() { }
 
@@ -21,82 +21,56 @@ export class TableComponent implements OnInit {
       this.defaultSort = this.headers[0];
     }
     this.sortType = this.defaultSort;
-    this.sortReverse = false;
+    this.sortAscending = true;
+    // this.sort(this.defaultSort);
   }
 
   /* Determines the correct sorting method and sorts the values */
   public sort(header: string) {
-    let sorted;
-    if (this.values.length < 2) {
+    // Dont bother sorting if theres less than 2 values
+    if (this.values.length <= 1) {
       return;
     }
 
-    // Determine the type of sorting to do
-    if (typeof this.values[0][header] === "number") {
-      sorted = this.sortNumerically(header);
-    } else if (typeof this.values[0][header] === "string") {
-      sorted = this.sortAlphabetically(header);
+    // Set back to default if its a different sort
+    if (this.sortType !== header) {
+      this.sortAscending = true;
+    } else {
+      this.sortAscending = !this.sortAscending;
     }
 
-    this.values = this.sortReverse ?  sorted: sorted.reverse(); 
+    // Sort with the new method.
+    switch (typeof this.values[0][header]) {
+      case "number":
+        this.values.sort((a, b) => {
+          if (a[header] === b[header]) {
+            return this.sortByDefault(a[this.defaultSort], b[this.defaultSort]);
+          }
+          return this.sortAscending ? a[header] - b[header] : b[header] - a[header];
+        });
+        break;
+      case "string":
+        this.values.sort((a, b) => {
+          if (a[header] === b[header]) {
+            return this.sortByDefault(a[this.defaultSort], b[this.defaultSort]);
+          }
+          return this.sortAscending ? a[header].localeCompare(b[header]) : b[header].localeCompare(a[header]);
+        })
+        break;
+      default:
+        break;
+    }
+
     this.sortType = header;
-    this.sortReverse = !this.sortReverse;
+    console.log(this.sortType, this.sortAscending);
   }
 
-  /* 
-  Sorts the values alphabetically. If two values are the same, the values
-  are then sorted by their default value. 
-  */
-  private sortAlphabetically(header: string): any[] {
-    // Using slice to create a shallow copy
-    return this.values.slice(0).sort((a, b) => {
-      if (b[header] === a[header]) {
-        return this.compare(a[this.defaultSort], b[this.defaultSort]);
-      } else {
-        return this.compareAlphabetically(a[header], b[header]);
-      } 
-    });
-  }
-  
-  /* 
-  Sorts the values numerically. If two values are the same, the values
-  are then sorted by their default value. 
-  */
-  private sortNumerically(header: string) {
-    // Using slice to create a shallow copy
-    return this.values.slice(0).sort((a, b) => {
-      if (b[header] === a[header]) {
-        return this.compare(a[this.defaultSort], b[this.defaultSort]);
-      } else {
-        return b[header] - a[header]; 
-      }
-    });
-  }
-
-  /* Compares two values of unknown type. */
-  private compare(a: any, b: any): number {
-    if (typeof a === "string" && typeof b === "string") {
-      return this.compareAlphabetically(a, b);
-    } else if (typeof a === "number" && typeof b === "number") {
-      return this.compareNumerically(a, b);
-    } else {
-      return 0;
+  /* Sort by the default value, makes reading the table easier */
+  private sortByDefault(a: any, b: any): number {
+    if (typeof a === "number") {
+      return a - b;
+    } else if (typeof a === "string") {
+      return a.localeCompare(b);
     }
-  }
-
-  /* Compares two values of type: string */
-  private compareAlphabetically(a: string, b: string): number {
-    if (a < b) {
-      return -1;
-    } else if (a > b) {
-      return 1;
-    } else {
-      return 0;
-    }
-  }
-
-  /* Compares two values of type: number */
-  compareNumerically(a: number, b: number): number {
-    return a - b;
   }
 }
