@@ -5,7 +5,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let value of values">
+    <tr *ngFor="let value of values" routerLink="{{value[link]}}">
         <td *ngFor="let header of headers">{{value[header]}}</td>
     </tr>
   </tbody>

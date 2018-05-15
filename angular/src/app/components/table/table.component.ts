@@ -9,6 +9,7 @@ export class TableComponent implements OnInit {
   @Input() values: any[];
   @Input() headers: string[];
   @Input() defaultSort: string;
+  @Input() link: string;
 
   sortType: string;
   sortReverse: boolean;

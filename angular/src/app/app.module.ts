@@ -11,14 +11,13 @@ import { HomeComponent } from './components/home/home.component';
 import { WeaponsService } from './services/weapons.service';
 import { EllipsisPipe } from './pipes/ellipsis.pipe';
 import { TableComponent } from './components/table/table.component';
+import { WeaponPageComponent } from './components/weapon-page/weapon-page.component';
 
 const appRoutes: Routes = [
   { path: 'weapons', component: WeaponsComponent },
+  { path: 'weapons/:name', component: WeaponPageComponent },
   { path: 'home', component: HomeComponent }, 
-  { path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 
 @NgModule({
@@ -28,7 +27,8 @@ const appRoutes: Routes = [
     WeaponsComponent,
     HomeComponent,
     EllipsisPipe,
-    TableComponent
+    TableComponent,
+    WeaponPageComponent
   ],
   imports: [
     BrowserModule,

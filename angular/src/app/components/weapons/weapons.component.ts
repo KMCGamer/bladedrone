@@ -23,40 +23,29 @@ export class WeaponsComponent implements OnInit {
     this.currentTab = 'all';
     this.tableView = false;
     this.route.queryParamMap.subscribe(paramMap => {
-      // TODO: Fix this, we shouldnt be subscribing to this every time, 
-      // we only need it once per query change.
-      if (paramMap.has("type") || paramMap.has("category")) {
-        this.weaponsService.queryWeapons(paramMap).subscribe(weapons => {
-          this.weapons = weapons;
-        });
-      } else {
-        this.weaponsService.getAllWeapons().subscribe(weapons => {
-          this.weapons = weapons;
-        })
-      }
+      this.weaponsService.queryWeapons(paramMap).subscribe(weapons => {
+        this.weapons = weapons;
+      });
     });
   }
 
-  ngAfterContentInit() {
-    //Called after ngOnInit when the component's or directive's content has been initialized.
-    //Add 'implements AfterContentInit' to the class.
-  }
-
+  /* Switch to table view */
   public toTableView() {
     this.tableView = true;
   }
 
+  /* Switch to card view */
   public toCardView() {
     this.tableView = false;
   }
 
-  public baseSkinFileId(weapon : Weapon): string {
-    const AB = weapon.category == "Primary" ? "00" : "01";
-    return `item_${AB}_000${weapon.weaponId}.png`;
+  /* Get the id for the base skin from the weapon service */
+  public getBaseSkinFileId(weapon: Weapon): string {
+    return this.weaponsService.getBaseSkinFileId(weapon);
   }
 
+  /* TODO: Fix current tabs */
   public isCurrentTab(tab: string): boolean {
     return this.currentTab === tab;
   }
-
 }
