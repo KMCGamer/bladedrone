@@ -9,6 +9,8 @@ Companion site for the free to play first-person shooter, [Ironsight](https://ir
 3. View skins.
 4. Create and share custom classes by a single link.
 
+[Read the wiki](https://github.com/KMCGamer/bladedrone/wiki) to follow my progress and learn more about the project!
+
 ## Stack
 
 This application makes use of the [MEAN](http://mean.io/) stack (MongoDB, Express.js, Angular 6, Node.js).
