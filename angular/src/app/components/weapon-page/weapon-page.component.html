@@ -30,7 +30,7 @@
     </div>
     <div class="row"  *ngFor="let stat of stats">
       <div class="col">
-        <p>{{stat.name}}</p>
+        <p>{{stat.name | unCamelCase | titlecase}}</p>
         <div class="progress" style="height: 10px;">
           <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': stat.value}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">{{stat.value}}</div>
         </div>

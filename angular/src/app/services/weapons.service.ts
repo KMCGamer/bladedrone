@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Weapon } from '../weapon';
+import { Weapon } from '../models/weapon.model';
 import { Params } from '@angular/router';
 
 const URL = 'http://localhost:3000/api/weapons';

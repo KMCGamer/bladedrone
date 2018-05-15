@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Weapon } from '../../weapon';
+import { Weapon } from '../../models/weapon.model';
 import { Observable } from 'rxjs';
 import { WeaponsService } from '../../services/weapons.service';
 import { ActivatedRoute } from '@angular/router';

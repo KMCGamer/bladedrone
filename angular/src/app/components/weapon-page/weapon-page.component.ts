@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { WeaponsService } from '../../services/weapons.service';
 import { ActivatedRoute } from '@angular/router';
-import { Weapon } from '../../weapon';
 import { Location } from '@angular/common';
 import * as _ from "lodash";
-import { Stat } from '../../stat';
+import { Stat } from '../../models/stat.model';
+import { Weapon } from '../../models/weapon.model';
 
 @Component({
   selector: 'app-weapon-page',
@@ -23,7 +23,6 @@ export class WeaponPageComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location) { }
 
-  
   ngOnInit() {
     const nameParam = this.route.snapshot.paramMap.get('name');
     this.weaponsService.getWeapon(nameParam).subscribe((weapon)=>{
