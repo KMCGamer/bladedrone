@@ -20,8 +20,8 @@ export class TableComponent implements OnInit {
     if (this.defaultSort === undefined) {
       this.defaultSort = this.headers[0];
     }
-    this.sortType = this.defaultSort;
-    this.sortAscending = true;
+    // this.sortType = this.defaultSort;
+    // this.sortAscending = true;
     // this.sort(this.defaultSort);
   }
 
@@ -62,7 +62,6 @@ export class TableComponent implements OnInit {
     }
 
     this.sortType = header;
-    console.log(this.sortType, this.sortAscending);
   }
 
   /* Sort by the default value, makes reading the table easier */
