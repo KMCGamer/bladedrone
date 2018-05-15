@@ -15,9 +15,9 @@ This application makes use of the [MEAN](http://mean.io/) stack (MongoDB, Expres
 
 ## Structure
 
-`angular/` - frontend code (what the user interacts with).  
-`express/` - backend code (api calls to get data from MongoDB).
-`db/` - MongoDB backups.
+* `angular/` - frontend code (what the user interacts with).
+* `express/` - backend code (api calls to get data from MongoDB).
+* `db/` - MongoDB backups.
 
 This project is built with the SCSS style option turned on.
 
