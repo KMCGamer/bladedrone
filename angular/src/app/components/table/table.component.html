@@ -1,7 +1,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th *ngFor="let header of headers" class="weapon-table-header" scope="col" (click)="sort(header)">{{header | titlecase}} <i [class.fa-caret-up]="sortAscending && sortType == header" class="fas fa-caret-down"></i></th>
+      <th *ngFor="let header of headers" class="weapon-table-header" scope="col" (click)="sort(header)">{{header | unCamelCase |titlecase}} <i [class.fa-caret-up]="sortAscending && sortType == header" class="fas fa-caret-down"></i></th>
     </tr>
   </thead>
   <tbody>

@@ -12,6 +12,7 @@ import { WeaponsService } from './services/weapons.service';
 import { EllipsisPipe } from './pipes/ellipsis.pipe';
 import { TableComponent } from './components/table/table.component';
 import { WeaponPageComponent } from './components/weapon-page/weapon-page.component';
+import { UnCamelCasePipe } from './pipes/un-camel-case.pipe';
 
 const appRoutes: Routes = [
   { path: 'weapons', component: WeaponsComponent },
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
     HomeComponent,
     EllipsisPipe,
     TableComponent,
-    WeaponPageComponent
+    WeaponPageComponent,
+    UnCamelCasePipe
   ],
   imports: [
     BrowserModule,
