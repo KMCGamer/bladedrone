@@ -1,12 +1,19 @@
-<span (click)="goBack()"><i class="far fa-arrow-alt-circle-left"></i>Go Back</span>
-
+<div class="row" style="margin-top: 30px;">
+  <div class="col-2">
+    <span style="cursor: pointer;" (click)="goBack()"><i class="far fa-arrow-alt-circle-left"></i> Go Back</span>
+  </div>
+</div>
 <div *ngIf="weapon" class="row">
   <div class="col">
     <div class="row">
-      <h1>{{weapon.name}}</h1>
+      <div class="col">
+        <h1>{{weapon.name}}</h1>
+      </div>
     </div>
     <div class="row">
-      <p>{{weapon.description}}</p>
+      <div class="col">
+        <p>{{weapon.description}}</p>
+      </div>
     </div>
   </div>
   <!-- Skin Picture -->
@@ -24,16 +31,16 @@
             {{currentSkin.name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a *ngFor="let skin of skins" class="dropdown-item" (click)="setCurrentSkin(skin)" [ngStyle]="{'color': getRarityColor(skin)}">{{skin.name}}</a>
+            <a *ngFor="let skin of skins" class="dropdown-item" (click)="setCurrentSkin(skin)" [ngStyle]="{'color': getRarityColor(skin)}" style="cursor: pointer;">{{skin.name}}</a>
           </div>
         </div>
       </div>
     </div>
     <div class="row"  *ngFor="let stat of stats">
       <div class="col">
-        <p>{{stat.name | unCamelCase | titlecase}}</p>
-        <div class="progress" style="height: 10px;">
-          <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': stat.value}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">{{stat.value}}</div>
+        <span>{{stat.name | unCamelCase | titlecase}}</span>
+        <div class="progress" style="height: 12px;">
+          <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': stat.value}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
     </div>

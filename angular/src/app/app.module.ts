@@ -13,6 +13,7 @@ import { TableComponent } from './components/table/table.component';
 import { WeaponPageComponent } from './components/weapon-page/weapon-page.component';
 import { UnCamelCasePipe } from './pipes/un-camel-case.pipe';
 import { SkinsService } from './services/skins.service';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'weapons', component: WeaponsComponent },
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
     ),
     HttpModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     WeaponsService,

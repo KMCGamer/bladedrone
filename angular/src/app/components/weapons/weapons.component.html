@@ -46,13 +46,13 @@
   </div>
   <div class="row" *ngIf="tableView">
     <div class="col-2">
-      <div *ngFor="let header of allHeaders" class="custom-control custom-checkbox" >
-        <input type="checkbox" class="custom-control-input" id="category{{header}}" (click)="toggleHeader(header)">
+      <div *ngFor="let header of getAllHeaders()" class="custom-control custom-checkbox" >
+        <input type="checkbox" class="custom-control-input" id="category{{header}}" (click)="toggleHeader(header)" [(ngModel)]="headers[header]">
         <label class="custom-control-label" for="category{{header}}">{{header | unCamelCase | titlecase}}</label>
       </div>
     </div>
     <div class="col-10">
-      <app-table [values]="weapons" [headers]="headers" [defaultSort]="'name'" [link]="'name'"></app-table>
+      <app-table [values]="weapons" [headers]="getActiveHeaders()" [defaultSort]="'name'" [link]="'name'"></app-table>
     </div>
   </div>
   
