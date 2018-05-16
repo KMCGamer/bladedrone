@@ -38,7 +38,7 @@ export class WeaponsService {
   }
 
   public getBaseSkinFileId(weapon: Weapon): string {
-    const AB = weapon.category == "Primary" ? "00" : "01";
+    const AB = weapon.category === "Primary" ? "00" : "01";
     return `${AB}_000${weapon.weaponId}`;
   }
 

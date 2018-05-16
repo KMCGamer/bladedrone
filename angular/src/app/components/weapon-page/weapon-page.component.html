@@ -9,21 +9,22 @@
       <p>{{weapon.description}}</p>
     </div>
   </div>
-  <div class="col">
+  <!-- Skin Picture -->
+  <div class="col" ng-if="skins">
     <div class="row">
       <div class="col">
-        <img src="../../../assets/img/item_{{getBaseSkinFileId(weapon)}}.png" alt="{{weapon.name}}">
+        <img src="../../../assets/img/item_{{getCategoryId()}}_{{currentSkin.skinId}}{{weapon.weaponId}}.png" alt="{{weapon.name}}">
       </div>
     </div>
+    <!-- Skin Dropdown -->
     <div class="row">
       <div class="col">
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{currentSkinName}}
+          <button [ngStyle]="{'color': getRarityColor(currentSkin)}" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{currentSkin.name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" (click)="setCurrentSkin('Base')">Base</a>
-            <a *ngFor="let skin of weapon.skins" class="dropdown-item" (click)="setCurrentSkin(skin)">{{skin}}</a>
+            <a *ngFor="let skin of skins" class="dropdown-item" (click)="setCurrentSkin(skin)" [ngStyle]="{'color': getRarityColor(skin)}">{{skin.name}}</a>
           </div>
         </div>
       </div>
