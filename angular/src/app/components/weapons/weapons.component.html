@@ -34,7 +34,7 @@
   </div>
 
   <div class="row" *ngIf="!tableView">
-    <div class="col-xs-10 col-sm-4 col-md-3 col-xl-3" *ngFor="let weapon of weapons" >
+    <div class="col-xs-10 col-sm-4 col-md-3" *ngFor="let weapon of weapons" >
       <div class="card weapon-card" routerLink="{{weapon.name}}">
         <div class="card-body">
           <h5 class="card-title">{{weapon.name}}</h5>

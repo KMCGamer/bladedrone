@@ -1,11 +1,12 @@
 .weapon {
     &-card {
+        cursor: pointer;
         position: relative;
         margin: 10px 0 10px 0;
         top: 0;
         transition: top .25s ease;
         &:hover {
-            top: -3px;
+            background-color: #FAFAFA;
         }
     }
 
