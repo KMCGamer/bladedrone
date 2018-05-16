@@ -6,7 +6,7 @@ const router = express.Router();
 
 // No parameters
 router.get('/', (req, res) => {
-    console.log(req.query);
+    // console.log(req.query);
     
     if (_.isEmpty(req.query)){
         Weapon.find({}, (err, weapons) => {
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     }
 
     _.forEach(req.query, (value, key) => {
-        console.log(value, key);
+        // console.log(value, key);
         Weapon.find({[key]: value}, (err, weapons) => {
             res.json(weapons);
         });
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 
 router.get('/:name', (req, res) => {
     const name = req.params.name;
-    console.log(name);
+    // console.log(name);
     Weapon.findOne({name: name}, (err, weapon) => {
         res.json(weapon);
     });
