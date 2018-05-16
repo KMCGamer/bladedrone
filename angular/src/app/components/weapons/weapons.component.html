@@ -26,10 +26,10 @@
       </ul>
     </div>
     <div class="col-1">
-      <button class="" (click)="toCardView()"><i class="fas fa-th"></i></button>
+      <button class="btn btn-primary" (click)="toCardView()"><i class="fas fa-th"></i></button>
     </div>
     <div class="col-1">
-      <button class="" (click)="toTableView()"><i class="fas fa-list"></i></button>
+      <button class="btn btn-primary" (click)="toTableView()"><i class="fas fa-list"></i></button>
     </div>
   </div>
 
@@ -44,9 +44,15 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <app-table *ngIf="tableView" [values]="weapons" [headers]="['name', 'category', 'type', 'damage', 'mobility', 'range', 'recoil', 'fireRate', 'accuracy']" [defaultSort]="'name'" [link]="'name'"></app-table>
+  <div class="row" *ngIf="tableView">
+    <div class="col-2">
+      <div *ngFor="let header of allHeaders" class="custom-control custom-checkbox" >
+        <input type="checkbox" class="custom-control-input" id="category{{header}}" (click)="toggleHeader(header)">
+        <label class="custom-control-label" for="category{{header}}">{{header | unCamelCase | titlecase}}</label>
+      </div>
+    </div>
+    <div class="col-10">
+      <app-table [values]="weapons" [headers]="headers" [defaultSort]="'name'" [link]="'name'"></app-table>
     </div>
   </div>
   
