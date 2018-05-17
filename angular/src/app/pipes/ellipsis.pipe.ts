@@ -3,12 +3,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'ellipsis'
 })
-export class EllipsisPipe {
+export class EllipsisPipe implements PipeTransform {
   transform(val, args) {
     if (args === undefined) {
       return val;
     } else if (val === undefined) {
-      return "";
+      return '';
     }
 
     if (val.length > args) {

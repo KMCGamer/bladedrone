@@ -3,7 +3,7 @@ import { Weapon } from '../../models/weapon.model';
 import { Observable } from 'rxjs';
 import { WeaponsService } from '../../services/weapons.service';
 import { ActivatedRoute } from '@angular/router';
-import { map } from "rxjs/operators";
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-guns',
@@ -28,7 +28,8 @@ export class WeaponsComponent implements OnInit {
 
   constructor(
     private weaponsService: WeaponsService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.currentTab = 'all';
@@ -61,12 +62,12 @@ export class WeaponsComponent implements OnInit {
   }
 
   /* Toggle a header you want/dont want to be seen */
-  public toggleHeader(header: string) : void {
+  public toggleHeader(header: string): void {
     this.headers[header] = !this.headers[header];
   }
 
   /* Check if a header is visible */
-  public headerIsActive(header: string) : boolean {
+  public headerIsActive(header: string): boolean {
     return this.headers[header];
   }
 

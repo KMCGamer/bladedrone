@@ -1,6 +1,7 @@
 <div class="row" style="margin-top: 30px;">
   <div class="col-2">
-    <span style="cursor: pointer;" (click)="goBack()"><i class="far fa-arrow-alt-circle-left"></i> Go Back</span>
+    <span style="cursor: pointer;" (click)="goBack()">
+      <i class="far fa-arrow-alt-circle-left"></i> Go Back</span>
   </div>
 </div>
 <div *ngIf="weapon" class="row">
@@ -20,23 +21,26 @@
   <div class="col" ng-if="skins">
     <div class="row">
       <div class="col">
-        <img src="../../../assets/img/item_{{getCategoryId()}}_{{currentSkin.skinId}}{{weapon.weaponId}}.png" alt="{{weapon.name}}">
+        <img *ngIf="currentSkin" src="../../../assets/img/item_{{getCategoryId()}}_{{currentSkin.skinId}}{{weapon.weaponId}}.png"
+          alt="{{weapon.name}}">
       </div>
     </div>
     <!-- Skin Dropdown -->
     <div class="row">
       <div class="col">
         <div class="dropdown">
-          <button [ngStyle]="{'color': getRarityColor(currentSkin)}" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button [ngStyle]="{'color': getRarityColor(currentSkin)}" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{currentSkin.name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a *ngFor="let skin of skins" class="dropdown-item" (click)="setCurrentSkin(skin)" [ngStyle]="{'color': getRarityColor(skin)}" style="cursor: pointer;">{{skin.name}}</a>
+            <a *ngFor="let skin of skins" class="dropdown-item" (click)="setCurrentSkin(skin)" [ngStyle]="{'color': getRarityColor(skin)}"
+              style="cursor: pointer;">{{skin.name}}</a>
           </div>
         </div>
       </div>
     </div>
-    <div class="row"  *ngFor="let stat of stats">
+    <div class="row" *ngFor="let stat of stats">
       <div class="col">
         <span>{{stat.name | unCamelCase | titlecase}}</span>
         <div class="progress" style="height: 12px;">

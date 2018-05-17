@@ -9,7 +9,10 @@ describe('WeaponsService', () => {
     });
   });
 
-  it('should be created', inject([WeaponsService], (service: WeaponsService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([WeaponsService], (service: WeaponsService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

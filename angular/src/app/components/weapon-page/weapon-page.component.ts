@@ -2,26 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { WeaponsService } from '../../services/weapons.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import * as _ from "lodash";
+import * as _ from 'lodash';
 import { Stat } from '../../models/stat.model';
 import { Weapon } from '../../models/weapon.model';
 import { Skin } from '../../models/skin.model';
 import { SkinsService } from '../../services/skins.service';
 
 const RARITY_ENUM = Object.freeze({
-  Common: 0, Uncommon: 1, Advanced: 2, Special: 3, 
-  Rare: 4, Epic: 5, Unknown: 6,
+  Common: 0,
+  Uncommon: 1,
+  Advanced: 2,
+  Special: 3,
+  Rare: 4,
+  Epic: 5,
+  Unknown: 6
 });
 
 const RARITY_COLORS = {
-  Common: "black",
-  Uncommon: "green",
-  Advanced: "blue",
-  Special: "orange",
-  Rare: "pink",
-  Epic: "purple",
-  Unknown: "grey"
-}
+  Common: 'black',
+  Uncommon: 'green',
+  Advanced: 'blue',
+  Special: 'orange',
+  Rare: 'pink',
+  Epic: 'purple',
+  Unknown: 'grey'
+};
 
 @Component({
   selector: 'app-weapon-page',
@@ -38,23 +43,32 @@ export class WeaponPageComponent implements OnInit {
     private weaponsService: WeaponsService,
     private skinsService: SkinsService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location
+  ) {}
 
   ngOnInit() {
     const nameParam = this.route.snapshot.paramMap.get('name');
-    this.weaponsService.getWeapon(nameParam).subscribe((weapon)=>{
+    this.weaponsService.getWeapon(nameParam).subscribe(weapon => {
       this.weapon = weapon;
 
-      this.skinsService.getSkinsByWeaponObjectId(this.weapon._id).subscribe((skins) => {
-        this.skins = skins.sort((a, b) => {
-          return RARITY_ENUM[a.rarity] - RARITY_ENUM[b.rarity];
+      this.skinsService
+        .getSkinsByWeaponObjectId(this.weapon._id)
+        .subscribe(skins => {
+          this.skins = skins.sort((a, b) => {
+            return RARITY_ENUM[a.rarity] - RARITY_ENUM[b.rarity];
+          });
+          this.currentSkin = this.skins.find(skin => skin.name === 'Base');
         });
-        this.currentSkin = this.skins.find((skin) => {return skin.name === "Base";});
-      });
 
-      let pickedStats = _.pick(this.weapon, ['damage', 'accuracy', 'range', 'recoil', 'fireRate']);
+      const pickedStats = _.pick(this.weapon, [
+        'damage',
+        'accuracy',
+        'range',
+        'recoil',
+        'fireRate'
+      ]);
       this.stats = _.map(pickedStats, (value, key) => {
-        return {name: key, value};
+        return { name: key, value };
       });
     });
 
@@ -63,7 +77,7 @@ export class WeaponPageComponent implements OnInit {
 
   /* Gets the category id for the weapon */
   public getCategoryId(): string {
-    return this.weapon.category === "Primary" ? "00" : "01";
+    return this.weapon.category === 'Primary' ? '00' : '01';
   }
 
   public getRarityColor(skin: Skin): string {
@@ -81,7 +95,7 @@ export class WeaponPageComponent implements OnInit {
   }
 
   /* Go back to the last page */
-  public goBack() :void {
+  public goBack(): void {
     this.location.back();
   }
 }

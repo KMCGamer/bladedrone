@@ -14,7 +14,7 @@ export class TableComponent implements OnInit {
   sortType: string;
   sortAscending: boolean;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     if (this.defaultSort === undefined) {
@@ -41,21 +41,25 @@ export class TableComponent implements OnInit {
 
     // Sort with the new method.
     switch (typeof this.values[0][header]) {
-      case "number":
+      case 'number':
         this.values.sort((a, b) => {
           if (a[header] === b[header]) {
             return this.sortByDefault(a[this.defaultSort], b[this.defaultSort]);
           }
-          return this.sortAscending ? a[header] - b[header] : b[header] - a[header];
+          return this.sortAscending
+            ? a[header] - b[header]
+            : b[header] - a[header];
         });
         break;
-      case "string":
+      case 'string':
         this.values.sort((a, b) => {
           if (a[header] === b[header]) {
             return this.sortByDefault(a[this.defaultSort], b[this.defaultSort]);
           }
-          return this.sortAscending ? a[header].localeCompare(b[header]) : b[header].localeCompare(a[header]);
-        })
+          return this.sortAscending
+            ? a[header].localeCompare(b[header])
+            : b[header].localeCompare(a[header]);
+        });
         break;
       default:
         break;
@@ -66,9 +70,9 @@ export class TableComponent implements OnInit {
 
   /* Sort by the default value, makes reading the table easier */
   private sortByDefault(a: any, b: any): number {
-    if (typeof a === "number") {
+    if (typeof a === 'number') {
       return a - b;
-    } else if (typeof a === "string") {
+    } else if (typeof a === 'string') {
       return a.localeCompare(b);
     }
   }

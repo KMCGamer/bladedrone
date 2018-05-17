@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -18,8 +18,8 @@ import { FormsModule } from '@angular/forms';
 const appRoutes: Routes = [
   { path: 'weapons', component: WeaponsComponent },
   { path: 'weapons/:name', component: WeaponPageComponent },
-  { path: 'home', component: HomeComponent }, 
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -35,18 +35,12 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(
-      appRoutes,
-      {enableTracing: true}
-    ),
+    RouterModule.forRoot(appRoutes, { enableTracing: true }),
     HttpModule,
     HttpClientModule,
     FormsModule
   ],
-  providers: [
-    WeaponsService,
-    SkinsService
-  ],
+  providers: [WeaponsService, SkinsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,15 +1,15 @@
 <table class="table table-hover">
   <thead>
-    <tr >
+    <tr>
       <th *ngFor="let header of headers" class="table-header" scope="col" (click)="sort(header)">
-        {{header | unCamelCase | titlecase}} 
+        {{header | unCamelCase | titlecase}}
         <i [class.fa-caret-up]="sortAscending && sortType == header" class="fas fa-caret-down"></i>
       </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let value of values" routerLink="{{value[link]}}" class="table-row">
-      <td  *ngFor="let header of headers">{{value[header]}}</td>
+      <td *ngFor="let header of headers">{{value[header]}}</td>
     </tr>
   </tbody>
 </table>

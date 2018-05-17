@@ -9,7 +9,10 @@ describe('SkinsService', () => {
     });
   });
 
-  it('should be created', inject([SkinsService], (service: SkinsService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([SkinsService], (service: SkinsService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });
