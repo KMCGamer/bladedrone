@@ -14,6 +14,7 @@ import { WeaponPageComponent } from './components/weapon-page/weapon-page.compon
 import { UnCamelCasePipe } from './pipes/un-camel-case.pipe';
 import { SkinsService } from './services/skins.service';
 import { FormsModule } from '@angular/forms';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 const appRoutes: Routes = [
   { path: 'weapons', component: WeaponsComponent },
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     EllipsisPipe,
     TableComponent,
     WeaponPageComponent,
-    UnCamelCasePipe
+    UnCamelCasePipe,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

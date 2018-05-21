@@ -38,6 +38,7 @@ export class WeaponPageComponent implements OnInit {
   stats: Stat[];
   skins: Skin[];
   currentSkin: Skin;
+  loading: boolean;
 
   constructor(
     private weaponsService: WeaponsService,
@@ -47,6 +48,7 @@ export class WeaponPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loading = true;
     const nameParam = this.route.snapshot.paramMap.get('name');
     this.weaponsService.getWeapon(nameParam).subscribe(weapon => {
       this.weapon = weapon;
@@ -91,11 +93,16 @@ export class WeaponPageComponent implements OnInit {
 
   /* Set the current skin of the button. TODO: and picture */
   public setCurrentSkin(skin: Skin): void {
+    this.loading = true;
     this.currentSkin = skin;
   }
 
   /* Go back to the last page */
   public goBack(): void {
     this.location.back();
+  }
+
+  public onLoad(): void {
+    this.loading = false;
   }
 }

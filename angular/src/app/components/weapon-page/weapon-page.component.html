@@ -19,10 +19,11 @@
   </div>
   <!-- Skin Picture -->
   <div class="col" ng-if="skins">
-    <div class="row">
-      <div class="col">
-        <img *ngIf="currentSkin" src="../../../assets/img/item_{{getCategoryId()}}_{{currentSkin.skinId}}{{weapon.weaponId}}.png"
-          alt="{{weapon.name}}">
+    <div class="row" style="height: 150px;">
+      <div class="col align-self-center" style="text-align: center;">
+        <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+        <img [hidden]="loading" *ngIf="currentSkin" src="../../../assets/img/item_{{getCategoryId()}}_{{currentSkin.skinId}}{{weapon.weaponId}}.png"
+          alt="{{weapon.name}}" (load)="onLoad()">
       </div>
     </div>
     <!-- Skin Dropdown -->
